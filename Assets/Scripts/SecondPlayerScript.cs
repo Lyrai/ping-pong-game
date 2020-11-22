@@ -5,7 +5,7 @@ using UnityEngine;
 public class SecondPlayerScript : MonoBehaviour
 {
     [SerializeField]
-    float speed = 3f;
+    float speed = 4f;
 
     void Update()
     {

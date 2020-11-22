@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ScoreWallController : MonoBehaviour
 {
-
+    [SerializeField]
+    GameObject scoreController;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ball"))
@@ -13,6 +15,6 @@ public class ScoreWallController : MonoBehaviour
 
     void Score()
     {
-        Debug.Log("Score");
+        scoreController.SendMessage("Score", gameObject.name);
     }
 }
