@@ -15,6 +15,6 @@ public class ScoreWallController : MonoBehaviour
 
     void Score()
     {
-        scoreController.SendMessage("Score", Random.Range(-25, 25) * Mathf.Deg2Rad);
+        scoreController.SendMessage("Score", gameObject.name);
     }
 }

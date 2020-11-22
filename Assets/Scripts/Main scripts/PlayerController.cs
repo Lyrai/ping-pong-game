@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    float speed = 4f;
+    public float speed = 4f;
     Rigidbody2D rb;
 
     private void Start()
@@ -19,7 +18,7 @@ public class FirstPlayerController : MonoBehaviour
         rb.velocity = Vector2.up * speed * direction * Time.deltaTime;
 
         transform.Translate(Vector2.up * speed * direction * Time.deltaTime);
-        transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3f, 3f));
+        transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3.9f, 3.9f));
     }
 
     [SerializeField]
@@ -27,8 +26,8 @@ public class FirstPlayerController : MonoBehaviour
     [SerializeField]
     string negDirectionButton;
     float t = 0;
-    const float accelerationConst = 1 / 0.2f;
-    const float decelerationConst = 1 / 0.1f;
+    const float accelerationConst = 1 / 0.1f;
+    const float decelerationConst = 1 / 0.05f;
     float GetDirection()
     {
 

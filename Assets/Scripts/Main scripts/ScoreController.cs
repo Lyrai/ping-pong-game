@@ -11,6 +11,18 @@ public class ScoreController : MonoBehaviour
     Transform ball;
     int firstPlayerScore = 0;
     int secondPlayerScore = 0;
+    [SerializeField]
+    GameObject secondPlayer;
+
+    private void Start()
+    {
+        if(PlayerInfo.IsSinglePlayer)
+        {
+            Destroy(secondPlayer.GetComponent<PlayerController>(), 0);
+            secondPlayer.AddComponent<AI>();
+        }
+    }
+
     void Score(string sender)
     {
         if (sender == "Player 1 wall")
