@@ -7,24 +7,28 @@ public class BallController : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField]
     float speed;
+    float angle;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        SetDirection();
+        angle = Random.Range(-25, 25) * Mathf.Deg2Rad;
+        SetDirection(angle);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+        {
+            rb.velocity = new Vector2(, rb.velocity.y);
+        }
         if(collision.gameObject.CompareTag("Wall"))
             rb.velocity = new Vector2(rb.velocity.x, -rb.velocity.y);
     }
 
-    private void SetDirection()
+    private void SetDirection(float an)
     {
-        float y = Random.Range(-0.35f, 0.35f);
-        float x = Mathf.Sqrt(1 - y * y);
+        float y = Mathf.Sin(an);
+        float x = Mathf.Cos(an);
         rb.velocity = new Vector2(x, y) * speed;
     }
 }
