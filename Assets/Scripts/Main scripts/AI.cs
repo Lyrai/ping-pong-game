@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AI : MonoBehaviour
 {
-    // Start is called before the first frame update
+    Rigidbody2D ball;
+    float speed;
     void Start()
     {
-        
+        ball = GameObject.FindWithTag("Ball").GetComponent<Rigidbody2D>();
+        speed = GameObject.FindWithTag("Player").GetComponent<PlayerController>().speed;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
