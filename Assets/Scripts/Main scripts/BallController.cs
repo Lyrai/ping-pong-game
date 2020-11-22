@@ -19,9 +19,8 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            angle = 180 - (angle - collision.gameObject.GetComponent<Rigidbody2D>().velocity.y * 500);
+            angle = 180 - (angle - collision.gameObject.GetComponent<Rigidbody2D>().velocity.y * 3);
             SetDirection(angle * Mathf.Deg2Rad);
-            Debug.Log(collision.gameObject.GetComponent<Rigidbody2D>().velocity.y);
         }
         if(collision.gameObject.CompareTag("Wall"))
         {
@@ -43,5 +42,11 @@ public class BallController : MonoBehaviour
         float y = Mathf.Sin(an);
         float x = Mathf.Cos(an);
         rb.velocity = new Vector2(x, y) * speed;
+    }
+
+    private void Score ()
+    {
+        transform.position = Vector2.zero;
+        SetDirection();
     }
 }

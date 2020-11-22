@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 4f;
+    public float speed;
     Rigidbody2D rb;
 
     private void Start()
@@ -15,22 +15,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float direction = GetDirection();
-        rb.velocity = Vector2.up * speed * direction * Time.deltaTime;
-
-        transform.Translate(Vector2.up * speed * direction * Time.deltaTime);
+        rb.velocity = Vector2.up * speed * direction;
         transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3.9f, 3.9f));
     }
+
+
 
     [SerializeField]
     string posDirectionButton;
     [SerializeField]
     string negDirectionButton;
     float t = 0;
-    const float accelerationConst = 1 / 0.1f;
-    const float decelerationConst = 1 / 0.05f;
     float GetDirection()
     {
-
+        const float accelerationConst = 10f;
+        const float decelerationConst = 20f;
         if (Input.GetKey(posDirectionButton) && t >= 0)
             t += Time.deltaTime * accelerationConst;
         else if (Input.GetKey(negDirectionButton) && t <= 0)

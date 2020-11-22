@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ScoreController : MonoBehaviour
 {
@@ -23,6 +24,12 @@ public class ScoreController : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            SceneManager.LoadScene("MainMenu");
+    }
+
     void Score(string sender)
     {
         if (sender == "Player 1 wall")
@@ -30,7 +37,6 @@ public class ScoreController : MonoBehaviour
         else
             firstPlayerScore++;
         scoreText.text = $"Score {firstPlayerScore}:{secondPlayerScore}";
-        ball.position = Vector2.zero;
-        ball.SendMessage("SetDirection");
+        ball.SendMessage("Score");
     }
 }
