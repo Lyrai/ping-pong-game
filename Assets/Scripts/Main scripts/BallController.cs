@@ -19,6 +19,7 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //Скорость игрока в момент удара влияет на угол отскока мяча
             angle = 180 - (angle - collision.gameObject.GetComponent<Rigidbody2D>().velocity.y * 3);
             SetDirection(angle * Mathf.Deg2Rad);
         }
@@ -29,6 +30,7 @@ public class BallController : MonoBehaviour
         }
     }
 
+    //Устанавливает случайное направление в начале раунда
     private void SetDirection()
     {
         angle = Random.Range(-25, 25);
@@ -37,6 +39,7 @@ public class BallController : MonoBehaviour
         rb.velocity = new Vector2(x, y) * speed;
     }
 
+    //Устанавливает направление по заданному углу
     private void SetDirection(float an)
     {
         float y = Mathf.Sin(an);

@@ -23,11 +23,13 @@ public class ScoreController : MonoBehaviour
         {
             if(PlayerInfo.player == 1)
             {
+                //Подключить ИИ для первого игрока
                 Destroy(secondPlayer.GetComponent<PlayerController>(), 0);
                 secondPlayer.AddComponent<AI>();
             }
             else
             {
+                //Подключить ИИ для второго игрока
                 Destroy(firstPlayer.GetComponent<PlayerController>(), 0);
                 firstPlayer.AddComponent<AI>();
             }
@@ -40,6 +42,7 @@ public class ScoreController : MonoBehaviour
             SceneManager.LoadScene("MainMenu");
     }
 
+    //Ведение счета
     void Score(string sender)
     {
         if (sender == "Player 1 wall")

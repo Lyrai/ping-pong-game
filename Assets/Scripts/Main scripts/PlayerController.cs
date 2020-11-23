@@ -20,12 +20,16 @@ public class PlayerController : MonoBehaviour
     }
 
 
-
+    //Кнопки задаются в инспекторе для управления двумя игроками одновременно
     [SerializeField]
+    //Кнопка положительного направления
     string posDirectionButton;
     [SerializeField]
+    //Кнопка отрицательного направления
     string negDirectionButton;
     float t = 0;
+
+    //Смотри AI.GetDirection
     float GetDirection()
     {
         const float accelerationConst = 10f;

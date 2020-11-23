@@ -9,6 +9,7 @@ public class AI : MonoBehaviour
     Rigidbody2D rb;
     Transform ballTransform;
 
+    //Перечисление возможных направлений движения для симуляции ввода
     enum Direction
     {
         Positive,
@@ -31,7 +32,7 @@ public class AI : MonoBehaviour
         if(PlayerInfo.player == 1)
         {
             if (ball.velocity.x > 0)
-                SetVelocity(out dir);
+                SetVelocity();
             else if (rb.velocity != Vector2.zero)
             {
                 dir = Direction.Zero;
@@ -41,7 +42,7 @@ public class AI : MonoBehaviour
         else
         {
             if (ball.velocity.x < 0)
-                SetVelocity(out dir);
+                SetVelocity();
             else if (rb.velocity != Vector2.zero)
             {
                 dir = Direction.Zero;
@@ -51,11 +52,15 @@ public class AI : MonoBehaviour
         transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3.9f, 3.9f));
     }
 
+    //Получает направление, попытка сделать симуляцию ввода для физического поведения такого же, как у игрока
     float t = 0;
     float GetDirection(Direction dir)
     {
+        //Константа = 1/0.1f, 0.1 - время разгона в секундах
         const float accelerationConst = 10f;
+        //Константа = 1/0.05f, 0.05 - время торможения в секундах
         const float decelerationConst = 20f;
+        //Константы для плавности движения платформы
 
         if (dir == Direction.Positive && t >= 0)
             t += Time.deltaTime * accelerationConst;
@@ -69,8 +74,10 @@ public class AI : MonoBehaviour
         return t;
     }
 
-    void SetVelocity(out Direction dir)
+    //Установить скорость
+    void SetVelocity()
     {
+        Direction dir;
         if (ballTransform.position.y > transform.position.y)
             dir = Direction.Positive;
         else
