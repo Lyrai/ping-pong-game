@@ -28,19 +28,25 @@ public class AI : MonoBehaviour
     void Update()
     {
         Direction dir;
-        if (ball.velocity.x > 0)
+        if(PlayerInfo.player == 1)
         {
-            if (ballTransform.position.y > transform.position.y)
-                dir = Direction.Positive;
-            else
-                dir = Direction.Negative;
-            float direction = GetDirection(dir);
-            rb.velocity = Vector2.up * speed * direction;
+            if (ball.velocity.x > 0)
+                SetVelocity(out dir);
+            else if (rb.velocity != Vector2.zero)
+            {
+                dir = Direction.Zero;
+                GetDirection(dir);
+            }
         }
-        else if(rb.velocity != Vector2.zero)
+        else
         {
-            dir = Direction.Zero;
-            GetDirection(dir);
+            if (ball.velocity.x < 0)
+                SetVelocity(out dir);
+            else if (rb.velocity != Vector2.zero)
+            {
+                dir = Direction.Zero;
+                GetDirection(dir);
+            }
         }
         transform.position = new Vector2(transform.position.x, Mathf.Clamp(transform.position.y, -3.9f, 3.9f));
     }
@@ -60,7 +66,16 @@ public class AI : MonoBehaviour
         else
             t = 0;
         Mathf.Clamp(t, -1, 1);
-        Debug.Log(t);
         return t;
+    }
+
+    void SetVelocity(out Direction dir)
+    {
+        if (ballTransform.position.y > transform.position.y)
+            dir = Direction.Positive;
+        else
+            dir = Direction.Negative;
+        float direction = GetDirection(dir);
+        rb.velocity = Vector2.up * speed * direction;
     }
 }

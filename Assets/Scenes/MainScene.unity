@@ -473,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 533279014}
   ball: {fileID: 1069313527}
+  firstPlayer: {fileID: 1381525432}
   secondPlayer: {fileID: 125261816}
 --- !u!1 &985329297
 GameObject:

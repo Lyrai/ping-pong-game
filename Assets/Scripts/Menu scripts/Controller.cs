@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class Controller : MonoBehaviour
 {
     [SerializeField]
-    Button playButton;
+    GameObject player1Button;
     [SerializeField]
-    Button exitButton;
+    GameObject player2Button;
+    [SerializeField]
+    Transform canvas;
     void Play()
     {
         SceneManager.LoadScene("MainScene");
@@ -17,9 +18,13 @@ public class Controller : MonoBehaviour
 
     void PlaySolo()
     {
+        Destroy(GameObject.Find("Player vs computer"), 0);
+        Destroy(GameObject.Find("Player vs player"), 0);
+        Instantiate(player1Button, canvas);
+        Instantiate(player2Button, canvas);
         PlayerInfo.IsSinglePlayer = true;
-        SceneManager.LoadScene("MainScene");
     }
+
     void Exit()
     {
         Application.Quit();

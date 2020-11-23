@@ -13,14 +13,24 @@ public class ScoreController : MonoBehaviour
     int firstPlayerScore = 0;
     int secondPlayerScore = 0;
     [SerializeField]
+    GameObject firstPlayer;
+    [SerializeField]
     GameObject secondPlayer;
 
     private void Start()
     {
         if(PlayerInfo.IsSinglePlayer)
         {
-            Destroy(secondPlayer.GetComponent<PlayerController>(), 0);
-            secondPlayer.AddComponent<AI>();
+            if(PlayerInfo.player == 1)
+            {
+                Destroy(secondPlayer.GetComponent<PlayerController>(), 0);
+                secondPlayer.AddComponent<AI>();
+            }
+            else
+            {
+                Destroy(firstPlayer.GetComponent<PlayerController>(), 0);
+                firstPlayer.AddComponent<AI>();
+            }
         }
     }
 

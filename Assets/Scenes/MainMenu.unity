@@ -734,8 +734,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d59a127d57fd847944ef1c717ce6a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
-  exitButton: {fileID: 0}
+  player1Button: {fileID: 2037277599361331296, guid: b5f5e71d7407127479aff71ec8159f31,
+    type: 3}
+  player2Button: {fileID: 8838459030122123325, guid: 22915ab337c3d6b4a87e601f188b99dc,
+    type: 3}
+  canvas: {fileID: 658123855}
 --- !u!4 &1290841417
 Transform:
   m_ObjectHideFlags: 0
